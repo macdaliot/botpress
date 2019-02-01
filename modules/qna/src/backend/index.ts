@@ -23,6 +23,7 @@ const onBotUnmount = async (bp: typeof sdk, botId: string) => {
   botScopedStorage.delete(botId)
 }
 
+// TODO: Extract the flow diff logic at a higher level and pass it as param
 const onFlowChanged = async (bp: typeof sdk, botId: string, newFlow: sdk.Flow) => {
   const oldFlow = await bp.ghost.forBot(botId).readFileAsObject<sdk.Flow>('./flows', newFlow.location)
   const qnaStorage = await botScopedStorage.get(botId)
